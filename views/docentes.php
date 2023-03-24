@@ -20,7 +20,7 @@
                     <a class="nav-link" href="index.php">Registrar estudiante</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page"  href="docentes.php">Registrar docente</a>
+                    <a class="nav-link" aria-current="page" href="docentes.php">Registrar docente</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="personalAdm.php">Registrar personal administrativo</a>
@@ -123,7 +123,28 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="row">
+                            <div class="col-lg-4 col-12">
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Asignatura 1:</label>
+                                    <input type="password" class="form-control" id="materia1" name="materia1">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-12">
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Asignatura 2:</label>
+                                    <input type="password" class="form-control" id="materia2" name="materia2">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-12">
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Asignatura 3:</label>
+                                    <input type="password" class="form-control" id="materia3" name="materia3">
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <button class="btn btn-primary" type="button" name="ingresar">Ingresar</button>
+                            </div>
                     </form>
                 </div>
             </div>
