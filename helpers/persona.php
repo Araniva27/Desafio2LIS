@@ -135,15 +135,39 @@ class Persona extends Validator{
     //Métodos de la clase
 
     public function generarCodigo(){
-
+        try{
+            $nombre = $this->nombre;
+            $apellido = $this->apellido;
+            $primeraLetraNombre = strtoupper(substr($nombre,0,1));
+            $primeraLetraApellido = strtoupper(substr($apellido,0,1));
+            $numeroAleatorio = rand(1000,9999);
+            $codigo = "{$primeraLetraNombre}{$primeraLetraApellido}{$numeroAleatorio}";
+            return $codigo;
+        }catch(Exception $e){
+            echo "Ha ocurrido un error: ".$e->getMessage();
+        }
+            
     }
 
-    public function esMayorEdad(){
-        
+    public function esMayorEdad($edad){
+        if($edad >= 18){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function calcularEdad(){
-        
+        try{
+            $fechaNacimiento = $this->fechaNacimiento;
+            $fechaActual = new Datetime();
+            $edad = $fechaActual->diff(new DateTime($fechaNacimiento))->y;
+
+            return $edad;
+        }catch(Exception $e){
+            echo "Ha ocurrido un error: ".$e->getMessage();
+        }
+
     }
 }
 
