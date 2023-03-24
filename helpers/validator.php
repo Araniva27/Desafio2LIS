@@ -37,5 +37,23 @@ class Validator
         }
     }
 
+    public function validatePhoneNumber($value)
+    {
+        if(preg_match('/^([2,6,7][0-9]{3})(-)([0-9]{4})$/',$value)){
+			return true;
+		}else{
+			return false;
+		}
+    }
+
+    public function validateSex($value)
+    {
+        if($value == 'M' || $value == 'F'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
 ?>
