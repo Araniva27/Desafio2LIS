@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="estudiantes.php">Registrar estudiante</a>
+                    <a class="nav-link" href="index.php">Registrar estudiante</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page"  href="docentes.php">Registrar docente</a>
@@ -123,6 +123,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
