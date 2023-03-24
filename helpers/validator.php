@@ -55,5 +55,13 @@ class Validator
         }
     }
 
+    public function validarCodigo($value){
+        if(preg_match('/^[A-Z]{2}\d{4}$/',$value)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
 ?>

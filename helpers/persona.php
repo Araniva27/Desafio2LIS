@@ -28,6 +28,20 @@ class Persona extends Validator{
         return $this->nombre;
     }
 
+    public function setApellido($value)
+    {
+        if(!empty($value)){
+            $this->apellido = $value;
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public function getApellido(){
+        return $this->apellido;
+    }
+
     public function setDui($value){
         if($this->validateDUI($value)){
             $this->dui = $value;

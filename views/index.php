@@ -31,6 +31,198 @@
 </nav>
 
 <body style="background-color: #FFFDFB;">
+
+    <?php
+    session_start();
+    require_once '../helpers/validator.php';
+    require_once '../helpers/persona.php';
+    require_once '../helpers/estudiantes.php';
+
+    if (!isset($_SESSION['estudiantes'])) {
+        $_SESSION['estudiantes'] = array();
+    }
+
+    if (isset($_POST['ingresar'])) {
+        $estudiante = new Estudiantes();
+        if ($estudiante->setNombre($_POST['nombre'])) {
+            if ($estudiante->setApellido($_POST['apellidos'])) {
+                if ($estudiante->setFechaNacimiento($_POST['fecha'])) {
+                    $edad = $estudiante->calcularEdad($estudiante->getFechaNacimiento());
+                    if ($estudiante->esMayorEdad($edad)) {
+                        if ($estudiante->setDui($_POST['dui'])) {
+                            if ($estudiante->setNit($_POST['nit'])) {
+                                if ($estudiante->setDireccion($_POST['direccion'])) {
+                                    if ($estudiante->setTelefonoMovil($_POST['movil'])) {
+                                        if ($estudiante->setCorreo($_POST['correo'])) {
+                                            if ($estudiante->setSexo($_POST['sexo'])) {
+                                                if ($estudiante->setTelefonoFijo($_POST['fijo'])) {
+                                                    if($edad>=18){
+                                                        $estudiante->setMayorEdad(1);
+                                                    }else{
+                                                        $estudiante->setMayorEdad(0);
+                                                    }
+                                                    $nota1=$_POST['nota1'];
+                                                    $nota2=$_POST['nota2'];
+                                                    $nota3=$_POST['nota3'];
+                                                    $notas = array($nota1,$nota2,$nota3);
+                                                    if($estudiante->setCalificaciones($notas)){
+                                                        $promedio = $estudiante->calcularNotaPromedio($notas);
+                                                        if($estudiante->setNotaPromedio($promedio)){
+                                                            $codigoEstudiante = $estudiante->generarCodigo();
+                                                            if($estudiante->setCodigoEstudiante($codigoEstudiante)){
+                                                                array_push($_SESSION['estudiantes'],$estudiante);
+                                                                var_dump($_SESSION['estudiantes']);
+                                                            }else{
+                                                                echo "
+                                                                <div class='container'>
+                                                                    <div class='row'>
+                                                                        <div class='alert alert-warning' role='alert'>
+                                                                            Error al asignar codigo del estudiante
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            ";                                                        
+                                                            }
+                                                                
+                                                        }else{
+                                                            echo "
+                                                                <div class='container'>
+                                                                    <div class='row'>
+                                                                        <div class='alert alert-warning' role='alert'>
+                                                                            Error al asignar nota promedio
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            ";
+                                                        }
+                                                    }else{
+                                                        echo "
+                                                            <div class='container'>
+                                                                <div class='row'>
+                                                                    <div class='alert alert-warning' role='alert'>
+                                                                        Error al asignar notas
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        ";
+                                                    }    
+                                                } else {
+                                                    echo "
+                                                        <div class='container'>
+                                                            <div class='row'>
+                                                                <div class='alert alert-warning' role='alert'>
+                                                                    Error al asignar el teléfono fijo
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    ";
+                                                }
+                                            } else {
+                                                echo "
+                                                    <div class='container'>
+                                                        <div class='row'>
+                                                            <div class='alert alert-warning' role='alert'>
+                                                                Error al asignar el sexo del estudiante
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ";
+                                            }
+                                        } else {
+                                            echo "
+                                                <div class='container'>
+                                                    <div class='row'>
+                                                        <div class='alert alert-warning' role='alert'>
+                                                            Error al asignar el correo
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ";
+                                        }
+                                    } else {
+                                        echo "
+                                        <div class='container'>
+                                            <div class='row'>
+                                                <div class='alert alert-warning' role='alert'>
+                                                    Error al asignar el teléfono móvil
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ";
+                                    }
+                                } else {
+                                    echo "
+                                        <div class='container'>
+                                            <div class='row'>
+                                                <div class='alert alert-warning' role='alert'>
+                                                    Error al asignar dirección
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ";
+                                }
+                            } else {
+                                echo "
+                                    <div class='container'>
+                                        <div class='row'>
+                                            <div class='alert alert-warning' role='alert'>
+                                                Error al asignar NIT
+                                            </div>
+                                        </div>
+                                    </div>
+                                ";
+                            }
+                        } else {
+                            echo "
+                                    <div class='container'>
+                                        <div class='row'>
+                                            <div class='alert alert-warning' role='alert'>
+                                                El estudiante es mayor de edad debe de tener DUI
+                                            </div>
+                                        </div>
+                                    </div>
+                                ";
+                        }
+                    } else {
+                        $estudiante->setDui('00000000-0');
+                    }
+                } else {
+                    echo "
+                            <div class='container'>
+                                <div class='row'>
+                                    <div class='alert alert-warning' role='alert'>
+                                     La fecha de nacimiento no debe de ser vacio
+                                    </div>
+                                </div>
+                            </div>
+                        ";
+                }
+            } else {
+                echo "
+                    <div class='container-fluid'>
+                        <div class='row'>
+                            <div class='alert alert-warning' role='alert'>
+                                El apellido no debe de ser vacio
+                            </div>
+                        </div>
+                    </div>
+                ";
+            }
+        } else {
+            echo "
+                    <div class='container-fluid'>
+                        <div class='row'>
+                            <div class='alert alert-warning' role='alert'>
+                                El nombre no debe de ser vacio
+                            </div>
+                        </div>
+                    </div>
+                ";
+        }
+    }
+
+
+    ?>
     <div class="container-fluid" style="margin-top:16px">
         <div class="card">
             <div class="card-header text-center" style="font-size: 19px; font-weight: bold;">
@@ -38,18 +230,18 @@
             </div>
             <div class="card-body">
                 <div class="container-fluid" style="margin-top:10px">
-                    <form>
+                    <form method="POST">
                         <div class="row">
                             <div class="col-lg-6 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Nombres:</label>
-                                    <input type="password" class="form-control" id="nombre" name="nombre">
+                                    <input type="text" class="form-control" id="nombre" name="nombre">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Apellidos:</label>
-                                    <input type="password" class="form-control" id="apellido" name="apellidos">
+                                    <input type="text" class="form-control" id="apellido" name="apellidos">
                                 </div>
                             </div>
                         </div>
@@ -57,13 +249,13 @@
                             <div class="col-lg-6 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">DUI:</label>
-                                    <input type="password" class="form-control" id="dui" name="dui">
+                                    <input type="text" class="form-control" id="dui" name="dui">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">NIT:</label>
-                                    <input type="password" class="form-control" id="nit" name="nit">
+                                    <input type="text" class="form-control" id="nit" name="nit">
                                 </div>
                             </div>
                         </div>
@@ -79,13 +271,13 @@
                             <div class="col-lg-6 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Teléfono móvil:</label>
-                                    <input type="password" class="form-control" id="movil" name="movil">
+                                    <input type="text" class="form-control" id="movil" name="movil">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Correo electrónico:</label>
-                                    <input type="password" class="form-control" id="correo" name="correo">
+                                    <input type="email" class="form-control" id="correo" name="correo">
                                 </div>
                             </div>
                         </div>
@@ -94,10 +286,10 @@
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Sexo</label>
                                     <div class="form-floating">
-                                        <select class="form-select" id="floatingSelectDisabled" aria-label="Floating label disabled select example">
+                                        <select class="form-select" id="floatingSelectDisabled" aria-label="Floating label disabled select example" name="sexo">
                                             <option selected>Seleccionar sexo</option>
-                                            <option value="1">Maculino</option>
-                                            <option value="2">Femenino</option>
+                                            <option value="M">Maculino</option>
+                                            <option value="F">Femenino</option>
                                         </select>
                                     </div>
                                 </div>
@@ -105,21 +297,15 @@
                             <div class="col-lg-6 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Teléfono fijo:</label>
-                                    <input type="password" class="form-control" id="fijo" name="fijo">
+                                    <input type="text" class="form-control" id="fijo" name="fijo">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-6 col-12">
+                            <div class="col-lg-12 col-12">
                                 <label for="exampleInputPassword1" class="form-label">Fecha de nacimiento:</label>
                                 <div class="col-sm-12" style="align-items: center;">
                                     <input type="date" name="fecha" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">Edad:</label>
-                                    <input type="password" class="form-control" id="edad" name="edad">
                                 </div>
                             </div>
                         </div>
@@ -127,24 +313,24 @@
                             <div class="col-lg-4 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Calificación 1:</label>
-                                    <input type="password" class="form-control" id="nota1" name="nota1">
+                                    <input type="number" class="form-control" id="nota1" name="nota1">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Calificación 2:</label>
-                                    <input type="password" class="form-control" id="nota2" name="nota2">
+                                    <input type="number" class="form-control" id="nota2" name="nota2">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Calificación 3:</label>
-                                    <input type="password" class="form-control" id="nota3" name="nota3">
+                                    <input type="number" class="form-control" id="nota3" name="nota3">
                                 </div>
                             </div>
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-primary" type="button" name="ingresar">Ingresar</button>
+                            <button class="btn btn-primary" type="submit" name="ingresar">Ingresar</button>
                         </div>
                     </form>
                 </div>
