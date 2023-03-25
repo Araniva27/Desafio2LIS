@@ -1,5 +1,5 @@
 <?php
-class Docentes extends Validator{
+class Docentes extends Persona{
     private $materias = null;
     private $mayorEdad = false;
     private $horasTrabajadas = null;
@@ -22,9 +22,9 @@ class Docentes extends Validator{
 
     public function setMayorEdad($value){
         if($value == 1){
-            $this->mayorEdad = true; 
+            $this->mayorEdad = "Si"; 
         }else{
-            $this->mayorEdad = false;
+            $this->mayorEdad = "No";
         }
     }
 
@@ -73,8 +73,34 @@ class Docentes extends Validator{
 
     public function setCodigoDocente($value){
         if($this->validarCodigo($value)){
-            
+            $this->codigoDocente = $value;
+            return true;
+        }else{
+            return false;
         }
+    }
+
+    public function getCodigoDocente(){
+        return $this->codigoDocente;
+    }
+
+    public function calcularSalario($horasTrabajadas,$pagoHora){
+        try{
+            $salario = $horasTrabajadas*$pagoHora;
+            return $salario;
+        }catch(Exception $e){
+            echo "Ha ocurrido un error: ".$e->getMessage();
+        }
+           
+    }
+
+    public function agregarDocente($docente){
+        try{            
+            array_push($_SESSION['docentes'],$docente);
+        }catch(Exception $e){
+            echo "Ha ocurrido un error: ".$e->getMessage();
+        }
+       
     }
 }
 
