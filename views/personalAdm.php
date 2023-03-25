@@ -65,6 +65,12 @@
                                                                     $codigoEmpleado = $personal->generarCodigo();
                                                                     if ($personal->setcodigoEmpleado($codigoEmpleado)) {
                                                                         if ($personal->setFunciones($_POST['funcion'])) {
+                                                                            $personal->setMayorEdad(1);
+                                                                            if($jubilacion>=30){
+                                                                                $personal->setjubilar(1);
+                                                                            }else{
+                                                                                $personal->setjubilar(0);
+                                                                            }
                                                                             $personalArray = array(
                                                                                 "nombre" => $personal->getNombre(),
                                                                                 "apellido" => $personal->getApellido(),
@@ -82,6 +88,8 @@
                                                                                 "funciones" => $personal->getFunciones(),
                                                                                 "aniosT" => $personal->getAniosTrabajados(),
                                                                                 "codigo" => $codigoEmpleado,
+                                                                                "mayor"=>$personal->getMayorEdad(),
+                                                                                "jubilar"=>$personal->getjubilar(),
                                                                             );
                                                                             $personal->agregarEmpleado($personalArray);
                                                                         } else {
@@ -120,6 +128,12 @@
                                                                     $codigoEmpleado = $personal->generarCodigo();
                                                                     if ($personal->setcodigoEmpleado($codigoEmpleado)) {
                                                                         if ($personal->setFunciones($_POST['funcion'])) {
+                                                                            $personal->setMayorEdad(1);
+                                                                            if($jubilacion>=30){
+                                                                                $personal->setjubilar(1);
+                                                                            }else{
+                                                                                $personal->setjubilar(0);
+                                                                            }
                                                                             $personalArray = array(
                                                                                 "nombre" => $personal->getNombre(),
                                                                                 "apellido" => $personal->getApellido(),
@@ -137,6 +151,8 @@
                                                                                 "funciones" => $personal->getFunciones(),
                                                                                 "aniosT" => $personal->getAniosTrabajados(),
                                                                                 "codigo" => $codigoEmpleado,
+                                                                                "mayor"=>$personal->getMayorEdad(),
+                                                                                "jubilar"=>$personal->getjubilar(),
                                                                             );
                                                                             $personal->agregarEmpleado($personalArray);
                                                                         } else {

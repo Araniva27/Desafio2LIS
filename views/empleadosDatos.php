@@ -34,6 +34,8 @@
                         <th scope="col">Dependencia</th>
                         <th scope="col">Salario</th>
                         <th scope="col">Funciones</th>
+                        <th scope="col">+18</th>
+                        <th scope="col">Jubilación</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,7 +63,10 @@
                                 <td>".$personal["aniosT"]."</td>
                                 <td>".$personal["dependencia"]."</td>
                                 <td>".$personal["salario"]."</td>
-                                <td>".$personal["funciones"]."</td>                               
+                                <td>".$personal["funciones"]."</td>
+                                <td>".$personal["mayor"]."</td>
+                                <td>".$personal["jubilar"]."</td>
+
                                 </tr>    
                             
                             ";

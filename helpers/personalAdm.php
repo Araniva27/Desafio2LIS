@@ -43,9 +43,9 @@ class PersonalAdm extends Persona
     public function setMayorEdad($value)
     {
         if ($value == 1) {
-            $this->mayorEdad = true;
+            $this->mayorEdad = "Si";
         } else {
-            $this->mayorEdad = false;
+            $this->mayorEdad = "No";
         }
     }
 
@@ -102,9 +102,9 @@ class PersonalAdm extends Persona
     public function setjubilar($value)
     {
         if ($value == 1) {
-            $this->jubilar = true;
+            $this->jubilar = "Si";
         } else {
-            $this->jubilar = false;
+            $this->jubilar = "No";
         }
     }
 
@@ -131,11 +131,11 @@ class PersonalAdm extends Persona
     public function jubilacion($aniosT)
     {
         if ($aniosT >= 30) {
-            $this->jubilar = true;
-            return 1;
+            
+            return true;
         } elseif ($aniosT < 30){
-            $this->jubilar = false;
-            return 0;
+            
+            return false;
         }
     }
 
