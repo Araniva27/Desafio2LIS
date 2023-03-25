@@ -426,13 +426,13 @@
                             <div class="col-lg-6 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">DUI:</label>
-                                    <input type="text" class="form-control" id="dui" name="dui">
+                                    <input type="text" class="form-control" id="dui" name="dui" placeholder="Ej. 00000000-0">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">NIT:</label>
-                                    <input type="text" class="form-control" id="nit" name="nit">
+                                    <input type="text" class="form-control" id="nit" name="nit" placeholder="Ej. 0000-000000-000-0">
                                 </div>
                             </div>
                         </div>
@@ -448,7 +448,7 @@
                             <div class="col-lg-6 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Teléfono móvil:</label>
-                                    <input type="text" class="form-control" id="movil" name="movil">
+                                    <input type="text" class="form-control" id="movil" name="movil" placeholder="Ej. 7896-3241">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-12">
@@ -474,7 +474,7 @@
                             <div class="col-lg-6 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Teléfono fijo:</label>
-                                    <input type="text" class="form-control" id="fijo" name="fijo">
+                                    <input type="text" class="form-control" id="fijo" name="fijo" placeholder="Ej. 7896-3241">
                                 </div>
                             </div>
                         </div>
@@ -490,19 +490,19 @@
                             <div class="col-lg-4 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Calificación 1:</label>
-                                    <input type="number" class="form-control" id="nota1" name="nota1">
+                                    <input type="number" class="form-control" id="nota1" name="nota1" step="0.1">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Calificación 2:</label>
-                                    <input type="number" class="form-control" id="nota2" name="nota2">
+                                    <input type="number" class="form-control" id="nota2" name="nota2" step="0.1">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-12">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Calificación 3:</label>
-                                    <input type="number" class="form-control" id="nota3" name="nota3">
+                                    <input type="number" class="form-control" id="nota3" name="nota3" step="0.1">
                                 </div>
                             </div>
                         </div>
