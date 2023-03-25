@@ -58,17 +58,27 @@ class Estudiantes extends Persona{
     }
 
     public function calcularNotaPromedio($value){
-        $nota1 = $value[0];
-        $nota2 = $value[1];
-        $nota3 = $value[2];
+        try{
+            $nota1 = $value[0];
+            $nota2 = $value[1];
+            $nota3 = $value[2];
 
-        $promedio = ($nota1+$nota2+$nota3)/3;
+            $promedio = ($nota1+$nota2+$nota3)/3;
 
-        return $promedio;
+            return $promedio;
+        }catch(Exception $e){
+            echo "Ha ocurrido un error: ".$e->getMessage();
+        }
+            
     }
 
     public function agregarEstudiante($estudiante){
-        array_push($_SESSION['estudiantes'],$estudiante);
+        try{
+            array_push($_SESSION['estudiantes'],$estudiante);
+        }catch(Exception $e){
+            echo "Ha ocurrido un error: ".$e->getMessage();
+        }
+       
     }
 
 }

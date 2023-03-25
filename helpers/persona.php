@@ -90,7 +90,7 @@ class Persona extends Validator{
         }
     }
 
-    public function getCorre(){
+    public function getCorreo(){
         return $this->correoElectronico;
     }
 

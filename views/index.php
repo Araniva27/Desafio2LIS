@@ -55,12 +55,7 @@
                                     if ($estudiante->setTelefonoMovil($_POST['movil'])) {
                                         if ($estudiante->setCorreo($_POST['correo'])) {
                                             if ($estudiante->setSexo($_POST['sexo'])) {
-                                                if ($estudiante->setTelefonoFijo($_POST['fijo'])) {
-                                                    if($edad>=18){
-                                                        $estudiante->setMayorEdad(1);
-                                                    }else{
-                                                        $estudiante->setMayorEdad(0);
-                                                    }
+                                                if ($estudiante->setTelefonoFijo($_POST['fijo'])) {                                                   
                                                     $nota1=$_POST['nota1'];
                                                     $nota2=$_POST['nota2'];
                                                     $nota3=$_POST['nota3'];
@@ -70,8 +65,32 @@
                                                         if($estudiante->setNotaPromedio($promedio)){
                                                             $codigoEstudiante = $estudiante->generarCodigo();
                                                             if($estudiante->setCodigoEstudiante($codigoEstudiante)){
-                                                                array_push($_SESSION['estudiantes'],$estudiante);
-                                                                var_dump($_SESSION['estudiantes']);
+                                                                $estudianteArray = array(
+                                                                    "nombre"=>$estudiante->getNombre(),
+                                                                    "apellido"=>$estudiante->getApellido(),
+                                                                    "dui"=>$estudiante->getDui(),
+                                                                    "nit"=>$estudiante->getNit(),
+                                                                    "direccion"=>$estudiante->getDireccion(),
+                                                                    "correo"=>$estudiante->getCorreo(),
+                                                                    "movil"=>$estudiante->getTelefonoMovil(),
+                                                                    "fijo"=>$estudiante->getTelefonoFijo(),
+                                                                    "sexo"=>$estudiante->getSexo(),
+                                                                    "nacimiento"=>$estudiante->getFechaNacimiento(),
+                                                                    "edad"=>$edad,
+                                                                    "promedio"=>$promedio,
+                                                                    "codigo"=>$codigoEstudiante,
+                                                                );
+                                                                //array_push($_SESSION['estudiantes'],$estudianteArray);                                                               
+                                                                $estudiante->agregarEstudiante($estudianteArray);
+                                                                echo "
+                                                                <div class='container'>
+                                                                    <div class='row'>
+                                                                        <div class='alert alert-success' role='alert'>
+                                                                            Estudiante registrado correctamente
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            ";             
                                                             }else{
                                                                 echo "
                                                                 <div class='container'>
@@ -184,7 +203,165 @@
                                 ";
                         }
                     } else {
-                        $estudiante->setDui('00000000-0');
+                        if ($estudiante->setDui('00000000-0')) {
+                            if ($estudiante->setNit($_POST['nit'])) {
+                                if ($estudiante->setDireccion($_POST['direccion'])) {
+                                    if ($estudiante->setTelefonoMovil($_POST['movil'])) {
+                                        if ($estudiante->setCorreo($_POST['correo'])) {
+                                            if ($estudiante->setSexo($_POST['sexo'])) {
+                                                if ($estudiante->setTelefonoFijo($_POST['fijo'])) {
+                                                    /*if($edad>=18){
+                                                        $estudiante->setMayorEdad(1);
+                                                    }else{
+                                                        $estudiante->setMayorEdad(0);
+                                                        $estudiante->setDui('00000000-0');
+                                                    }*/
+                                                    $nota1=$_POST['nota1'];
+                                                    $nota2=$_POST['nota2'];
+                                                    $nota3=$_POST['nota3'];
+                                                    $notas = array($nota1,$nota2,$nota3);
+                                                    if($estudiante->setCalificaciones($notas)){
+                                                        $promedio = $estudiante->calcularNotaPromedio($notas);
+                                                        if($estudiante->setNotaPromedio($promedio)){
+                                                            $codigoEstudiante = $estudiante->generarCodigo();
+                                                            if($estudiante->setCodigoEstudiante($codigoEstudiante)){
+                                                                $estudianteArray = array(
+                                                                    "nombre"=>$estudiante->getNombre(),
+                                                                    "apellido"=>$estudiante->getApellido(),
+                                                                    "dui"=>$estudiante->getDui(),
+                                                                    "nit"=>$estudiante->getNit(),
+                                                                    "direccion"=>$estudiante->getDireccion(),
+                                                                    "correo"=>$estudiante->getCorreo(),
+                                                                    "movil"=>$estudiante->getTelefonoMovil(),
+                                                                    "fijo"=>$estudiante->getTelefonoFijo(),
+                                                                    "sexo"=>$estudiante->getSexo(),
+                                                                    "nacimiento"=>$estudiante->getFechaNacimiento(),
+                                                                    "edad"=>$edad,
+                                                                    "promedio"=>$promedio,
+                                                                    "codigo"=>$codigoEstudiante,
+                                                                );
+                                                                //array_push($_SESSION['estudiantes'],$estudianteArray);                                                               
+                                                                $estudiante->agregarEstudiante($estudianteArray);
+                                                                echo "
+                                                                <div class='container'>
+                                                                    <div class='row'>
+                                                                        <div class='alert alert-success' role='alert'>
+                                                                            Estudiante registrado correctamente
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            ";             
+                                                            }else{
+                                                                echo "
+                                                                <div class='container'>
+                                                                    <div class='row'>
+                                                                        <div class='alert alert-warning' role='alert'>
+                                                                            Error al asignar codigo del estudiante
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            ";                                                        
+                                                            }
+                                                                
+                                                        }else{
+                                                            echo "
+                                                                <div class='container'>
+                                                                    <div class='row'>
+                                                                        <div class='alert alert-warning' role='alert'>
+                                                                            Error al asignar nota promedio
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            ";
+                                                        }
+                                                    }else{
+                                                        echo "
+                                                            <div class='container'>
+                                                                <div class='row'>
+                                                                    <div class='alert alert-warning' role='alert'>
+                                                                        Error al asignar notas
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        ";
+                                                    }    
+                                                } else {
+                                                    echo "
+                                                        <div class='container'>
+                                                            <div class='row'>
+                                                                <div class='alert alert-warning' role='alert'>
+                                                                    Error al asignar el teléfono fijo
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    ";
+                                                }
+                                            } else {
+                                                echo "
+                                                    <div class='container'>
+                                                        <div class='row'>
+                                                            <div class='alert alert-warning' role='alert'>
+                                                                Error al asignar el sexo del estudiante
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ";
+                                            }
+                                        } else {
+                                            echo "
+                                                <div class='container'>
+                                                    <div class='row'>
+                                                        <div class='alert alert-warning' role='alert'>
+                                                            Error al asignar el correo
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ";
+                                        }
+                                    } else {
+                                        echo "
+                                        <div class='container'>
+                                            <div class='row'>
+                                                <div class='alert alert-warning' role='alert'>
+                                                    Error al asignar el teléfono móvil
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ";
+                                    }
+                                } else {
+                                    echo "
+                                        <div class='container'>
+                                            <div class='row'>
+                                                <div class='alert alert-warning' role='alert'>
+                                                    Error al asignar dirección
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ";
+                                }
+                            } else {
+                                echo "
+                                    <div class='container'>
+                                        <div class='row'>
+                                            <div class='alert alert-warning' role='alert'>
+                                                Error al asignar NIT
+                                            </div>
+                                        </div>
+                                    </div>
+                                ";
+                            }
+                        } else {
+                            echo "
+                                    <div class='container'>
+                                        <div class='row'>
+                                            <div class='alert alert-warning' role='alert'>
+                                                El estudiante es mayor de edad debe de tener DUI
+                                            </div>
+                                        </div>
+                                    </div>
+                                ";
+                        }
                     }
                 } else {
                     echo "
@@ -331,6 +508,9 @@
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button class="btn btn-primary" type="submit" name="ingresar">Ingresar</button>
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto" style = "margin-top:10px">
+                            <a href="estudiantesDatos.php" class="btn btn-success" type="submit" name="listado">Listado de estudiantes</a>
                         </div>
                     </form>
                 </div>

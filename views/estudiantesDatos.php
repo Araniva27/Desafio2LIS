@@ -30,28 +30,45 @@
                         <th scope="col">Fecha de nacimiento</th>
                         <th scope="col">Edad</th>
                         <th scope="col">Nota promedio</th>
+                        <th scope="col">Codigo</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
+                    <?php
+                        session_start();                         
+                        //$_SESSION['estudiantes'] = array();
+                        if(isset($_POST['eliminar'])){
+                            $_SESSION['estudiantes'] = array();
+                        }
+                        foreach($_SESSION['estudiantes'] as $estudiante){
+                            echo "
+                            <tr>
+                                <td>".$estudiante["nombre"]."</td>
+                                <td>".$estudiante["apellido"]."</td>
+                                <td>".$estudiante["dui"]."</td>
+                                <td>".$estudiante["nit"]."</td>
+                                <td>".$estudiante["direccion"]."</td>
+                                <td>".$estudiante["correo"]."</td>
+                                <td>".$estudiante["movil"]."</td>
+                                <td>".$estudiante["fijo"]."</td>
+                                <td>".$estudiante["sexo"]."</td>
+                                <td>".$estudiante["nacimiento"]."</td>
+                                <td>".$estudiante["edad"]."</td>
+                                <td>".$estudiante["promedio"]."</td>
+                                <td>".$estudiante["codigo"]."</td>                                
+                                </tr>    
+                            
+                            ";
+                        }
+                    ?>
+                   
                 </tbody>
             </table>
             <div class="d-grid gap-2 col-3 mx-auto" style="margin-bottom:15px">
-  <button class="btn btn-primary" type="button" name="regresar">Regresar</button>
-  <button class="btn btn-danger" type="button" name="eliminar">Eliminar</button>
+            <form method="POST">
+                <a href="index.php" class="btn btn-primary" type="button" name="regresar">Regresar</a>
+                <button class="btn btn-danger" type="submit" name="eliminar">Eliminar</button>
+            </form>
 </div>
         </div>
     </div>
