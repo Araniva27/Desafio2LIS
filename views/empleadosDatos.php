@@ -43,7 +43,6 @@
                         if(isset($_POST['eliminar'])){
                             $_SESSION['personal'] = array();
                         }
-                        var_dump($_SESSION['personal']);
                         foreach($_SESSION['personal'] as $personal){
                             echo "
                             <tr>

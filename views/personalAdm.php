@@ -107,7 +107,7 @@
                                                                         ";
                                                                     }
                                                                 } else {
-                                                                    echo "
+                                                                    /* echo "
                                                                         <div class='container-fluid'>
                                                                             <div class='row'>
                                                                                 <div class='alert alert-warning' role='alert'>
@@ -115,7 +115,52 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    ";
+                                                                    ";*/
+
+                                                                    $codigoEmpleado = $personal->generarCodigo();
+                                                                    if ($personal->setcodigoEmpleado($codigoEmpleado)) {
+                                                                        if ($personal->setFunciones($_POST['funcion'])) {
+                                                                            $personalArray = array(
+                                                                                "nombre" => $personal->getNombre(),
+                                                                                "apellido" => $personal->getApellido(),
+                                                                                "dui" => $personal->getDui(),
+                                                                                "nit" => $personal->getNit(),
+                                                                                "direccion" => $personal->getDireccion(),
+                                                                                "correo" => $personal->getCorreo(),
+                                                                                "movil" => $personal->getTelefonoMovil(),
+                                                                                "fijo" => $personal->getTelefonoFijo(),
+                                                                                "sexo" => $personal->getSexo(),
+                                                                                "fechaNacimiento" => $personal->getFechaNacimiento(),
+                                                                                "edad" => $edad,
+                                                                                "dependencia" => $personal->getDependencias(),
+                                                                                "salario" => $personal->getSalarioMensual(),
+                                                                                "funciones" => $personal->getFunciones(),
+                                                                                "aniosT" => $personal->getAniosTrabajados(),
+                                                                                "codigo" => $codigoEmpleado,
+                                                                            );
+                                                                            $personal->agregarEmpleado($personalArray);
+                                                                        } else {
+                                                                            echo "
+                                                                                <div class='container-fluid'>
+                                                                                    <div class='row'>
+                                                                                        <div class='alert alert-warning' role='alert'>
+                                                                                            Error al asignar funciones
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            ";
+                                                                        }
+                                                                    } else {
+                                                                        echo "
+                                                                            <div class='container-fluid'>
+                                                                                <div class='row'>
+                                                                                    <div class='alert alert-warning' role='alert'>
+                                                                                        Error al generar codigo del empleado
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        ";
+                                                                    }
                                                                 }
                                                             } else {
                                                                 echo "
