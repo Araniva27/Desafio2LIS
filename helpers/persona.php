@@ -183,6 +183,7 @@ class Persona extends Validator{
         }
 
     }
+
 }
 
 ?>
