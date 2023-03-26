@@ -130,21 +130,25 @@ class PersonalAdm extends Persona
 
     public function jubilacion($aniosT)
     {
-        if ($aniosT >= 30) {
-            
-            return true;
-        } elseif ($aniosT < 30){
-            
-            return false;
+        try {
+            if ($aniosT >= 30) {
+
+                return true;
+            } elseif ($aniosT < 30) {
+
+                return false;
+            }
+        } catch (Exception $e) {
+            echo "Ha ocurrido un error: " . $e->getMessage();
         }
     }
 
-    public function agregarEmpleado($empleado){
-        try{
-            array_push($_SESSION['personal'],$empleado);
-        }catch(Exception $e){
-            echo "Ha ocurrido un error: ".$e->getMessage();
+    public function agregarEmpleado($empleado)
+    {
+        try {
+            array_push($_SESSION['personal'], $empleado);
+        } catch (Exception $e) {
+            echo "Ha ocurrido un error: " . $e->getMessage();
         }
-       
     }
 }
