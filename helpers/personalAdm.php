@@ -1,7 +1,6 @@
 <?php
 class PersonalAdm extends Persona
 {
-    private $asignaturas = null;
     private $mayorEdad = false;
     private $salarioMensual = null;
     private $funciones = null;
@@ -23,21 +22,6 @@ class PersonalAdm extends Persona
     public function getDependencias()
     {
         return $this->dependencia;
-    }
-
-    public function setAsignaturas($value)
-    {
-        if (is_array($value) && count($value) == 3) {
-            $this->asignaturas = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function getAsignaturas()
-    {
-        return $this->asignaturas;
     }
 
     public function setMayorEdad($value)

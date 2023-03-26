@@ -43,7 +43,7 @@ class Persona extends Validator{
     }
 
     public function setDui($value){
-        if($this->validateDUI($value)){
+        if($this->validateDUI($value) && !empty($value)){
             $this->dui = $value;
             return true;
         }else{
@@ -56,7 +56,7 @@ class Persona extends Validator{
     }
 
     public function setNit($value){
-        if($this->validateNIT($value)){
+        if($this->validateNIT($value) && !empty($value)){
             $this->nit = $value;
             return true;
         }else{
@@ -69,7 +69,7 @@ class Persona extends Validator{
     }
 
     public function setDireccion($value){
-        if(!empty($value)){
+        if(!empty($value) && !empty($value)){
             $this->direccion = $value;
             return true;
         }else{
@@ -82,7 +82,7 @@ class Persona extends Validator{
     }
 
     public function setCorreo($value){
-        if($this->validateCorreo($value)){
+        if($this->validateCorreo($value) && !empty($value)){
             $this->correoElectronico = $value;
             return true;
         }else{
@@ -95,7 +95,7 @@ class Persona extends Validator{
     }
 
     public function setTelefonoMovil($value){
-        if($this->validateNumeroTelefono($value)){
+        if($this->validateNumeroTelefono($value) && !empty($value)){
             $this->telefonoMovil = $value;
             return true;
         }else{
@@ -108,7 +108,7 @@ class Persona extends Validator{
     }
 
     public function setTelefonoFijo($value){
-        if($this->validatePhoneNumber($value)){
+        if($this->validatePhoneNumber($value) && !empty($value)){
             $this->telefonoFijo = $value;
             return true;
         }else{
@@ -121,7 +121,7 @@ class Persona extends Validator{
     }
 
     public function setSexo($value){
-        if($this->validateSex($value)){
+        if($this->validateSex($value) && !empty($value)){
             $this->sexo = $value;
             return true;
         }else{
