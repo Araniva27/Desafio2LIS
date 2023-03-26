@@ -89,7 +89,7 @@
 																	"mayor"=>$docente->getmMayorEdad()
 															  );
 															  $docente->agregarDocente($docenteArray);
-															  var_dump($_SESSION['docentes']);
+															 // var_dump($_SESSION['docentes']);
 															}else{
 																echo "
 																	<div class='container'>

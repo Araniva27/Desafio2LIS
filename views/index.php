@@ -65,6 +65,11 @@
                                                         if($estudiante->setNotaPromedio($promedio)){
                                                             $codigoEstudiante = $estudiante->generarCodigo();
                                                             if($estudiante->setCodigoEstudiante($codigoEstudiante)){
+                                                                if($edad>18){
+                                                                    $estudiante->setMayorEdad(1);
+                                                                }else{
+                                                                    $estudiante->setMayorEdad(0);
+                                                                }
                                                                 $estudianteArray = array(
                                                                     "nombre"=>$estudiante->getNombre(),
                                                                     "apellido"=>$estudiante->getApellido(),
@@ -79,6 +84,7 @@
                                                                     "edad"=>$edad,
                                                                     "promedio"=>$promedio,
                                                                     "codigo"=>$codigoEstudiante,
+                                                                    "mayor"=>$estudiante->getMayorEdad(),
                                                                 );
                                                                 //array_push($_SESSION['estudiantes'],$estudianteArray);                                                               
                                                                 $estudiante->agregarEstudiante($estudianteArray);
@@ -225,6 +231,11 @@
                                                         if($estudiante->setNotaPromedio($promedio)){
                                                             $codigoEstudiante = $estudiante->generarCodigo();
                                                             if($estudiante->setCodigoEstudiante($codigoEstudiante)){
+                                                                if($edad>18){
+                                                                    $estudiante->setMayorEdad(1);
+                                                                }else{
+                                                                    $estudiante->setMayorEdad(0);
+                                                                }
                                                                 $estudianteArray = array(
                                                                     "nombre"=>$estudiante->getNombre(),
                                                                     "apellido"=>$estudiante->getApellido(),
@@ -239,6 +250,7 @@
                                                                     "edad"=>$edad,
                                                                     "promedio"=>$promedio,
                                                                     "codigo"=>$codigoEstudiante,
+                                                                    "mayor"=>$estudiante->getMayorEdad(),
                                                                 );
                                                                 //array_push($_SESSION['estudiantes'],$estudianteArray);                                                               
                                                                 $estudiante->agregarEstudiante($estudianteArray);

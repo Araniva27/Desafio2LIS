@@ -21,9 +21,9 @@ class Estudiantes extends Persona{
 
     public function setMayorEdad($value){
         if($value == 1){
-            $this->mayorEdad = true;
+            $this->mayorEdad = "Si";
         }else{
-            $this->mayorEdad = false;
+            $this->mayorEdad = "No";
         }
     }
 

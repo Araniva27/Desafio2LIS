@@ -31,6 +31,7 @@
                         <th scope="col">Edad</th>
                         <th scope="col">Nota promedio</th>
                         <th scope="col">Codigo</th>
+                        <th scope="col">+18</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,7 +56,8 @@
                                 <td>".$estudiante["nacimiento"]."</td>
                                 <td>".$estudiante["edad"]."</td>
                                 <td>".$estudiante["promedio"]."</td>
-                                <td>".$estudiante["codigo"]."</td>                                
+                                <td>".$estudiante["codigo"]."</td>   
+                                <td>".$estudiante["mayor"]."</td>                              
                                 </tr>    
                             
                             ";
