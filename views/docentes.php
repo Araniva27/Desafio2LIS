@@ -89,6 +89,15 @@
 																	"mayor"=>$docente->getmMayorEdad()
 															  );
 															  $docente->agregarDocente($docenteArray);
+                                                              echo "
+																	<div class='container'>
+																		<div class='row'>
+																			<div class='alert alert-success' role='alert'>
+																				Docente registrado exitosamente
+																			</div>
+																		</div>
+																	</div>
+																";
 															 // var_dump($_SESSION['docentes']);
 															}else{
 																echo "
